@@ -1,3 +1,4 @@
+
 # 📚 Biblioteca Digital Interactiva – Lectura+
 
 Este es el segundo desafío práctico del curso, cuyo objetivo es implementar una **plataforma web interactiva** donde los usuarios puedan explorar, filtrar y calificar libros de una biblioteca digital.
@@ -56,51 +57,95 @@ Este es el segundo desafío práctico del curso, cuyo objetivo es implementar un
 
 ---
 
+## 📂 Estructura del Proyecto
+
+```
+LecturaPlusWeb/
+├── Controllers/
+├── Models/
+├── Views/
+├── wwwroot/
+├── data/
+├── appsettings.json
+├── Program.cs
+├── tailwind.config.js
+├── postcss.config.js
+└── README.md
+```
+
 ---
 
-## ⚙️ Instalación del proyecto
+## ⚙️ Instalación y configuración del entorno
+
+Sigue estos pasos para ejecutar el proyecto correctamente en tu entorno local.
 
 ### 1. Clonar y abrir el proyecto
 
 ```bash
 git clone <repositorio>
 cd LecturaPlusWeb
+```
+
+### 2. Instalar dependencias de Tailwind CSS y Flowbite
+
+Asegúrate de tener **Node.js** y **npm** instalados.
+
+```bash
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init
 npm install flowbite
-3. Configurar Tailwind
-En tailwind.config.js asegúrate de incluir:
-content: [
-  './Views/**/*.cshtml',
-  './node_modules/flowbite/**/*.js'
-],
+```
 
-Y en wwwroot/css/site.css:
+### 3. Configurar Tailwind
 
-css
+Edita tu archivo `tailwind.config.js` para incluir lo siguiente:
 
+```js
+module.exports = {
+  content: [
+    './Views/**/*.cshtml',
+    './node_modules/flowbite/**/*.js'
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [
+    require('flowbite/plugin')
+  ],
+}
+```
+
+Luego, en `wwwroot/css/site.css`, agrega:
+
+```css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @import "flowbite";
+```
 
-4. Compilar estilos}
+> Asegúrate de que `output.css` esté enlazado correctamente en tu archivo `_Layout.cshtml`.
 
+### 4. Compilar estilos con Tailwind
+
+```bash
 npx tailwindcss -i ./wwwroot/css/site.css -o ./wwwroot/css/output.css --watch
+```
 
-🗃️ Base de datos
+---
 
-Ejecuta el script script.sql incluido para:
+## 🗃️ Configuración de la base de datos
 
-Crear tablas Libros y Calificaciones.
+1. Ejecuta el script `script.sql` incluido para:
+   - Crear las tablas `Libros` y `Calificaciones`.
+   - Insertar al menos 15 registros de ejemplo.
 
-Insertar al menos 15 registros de ejemplo.
+2. Abre tu archivo `appsettings.json` y configura la cadena de conexión de esta forma:
 
-Configura tu cadena de conexión en appsettings.json:
-
-
+```json
 "ConnectionStrings": {
   "DefaultConnection": "Server=localhost;Database=LecturaPlusDB;Trusted_Connection=True;"
 }
+```
 
