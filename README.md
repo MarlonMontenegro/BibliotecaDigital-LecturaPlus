@@ -8,13 +8,16 @@ Este es el segundo desafío práctico del curso, cuyo objetivo es implementar un
 ## 📸 Screenshots
 
 ### Página principal – Explorar Libros
-![Explorar Libros](screenshots/explorar-libros.png)
+![image](https://github.com/user-attachments/assets/64b78e6b-bccc-484b-9481-74b5fc0e056f)
+
 
 ### Página de Ranking – Top Lecturas
-![Top Lecturas](screenshots/top-lecturas.png)
+![image](https://github.com/user-attachments/assets/f4ae0c3f-8f44-4b88-90a4-f248e6415db1)
+
 
 ### Página de Administración
-![Administrar Libros](screenshots/administrar-libros.png)
+![image](https://github.com/user-attachments/assets/9a95fb98-e755-47f7-858e-3d0de972dc4f)
+
 
 ---
 
