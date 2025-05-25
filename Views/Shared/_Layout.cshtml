@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="es"  class="h-full">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - LecturaPlus</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/LecturaPlusWeb.styles.css" asp-append-version="true" />
+</head>
+<body class="h-full flex flex-col min-h-screen bg-gray-100 text-gray-800">
+<div class="flex flex-col min-h-screen">
+        
+    <header>
+        <nav class="bg-white shadow-md">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+                <a class="text-xl font-bold text-blue-600" asp-controller="Libros" asp-action="Index">LecturaPlusWeb</a>
+                <ul class="flex space-x-4">
+                    <li><a class="text-gray-700 hover:text-blue-500" asp-controller="Libros" asp-action="Index">Explorar Libros</a></li>
+                    <li><a class="text-gray-700 hover:text-blue-500" asp-controller="Calificaciones" asp-action="TopLibrosCalificados">Ranking de Libros</a></li>
+                    <li><a class="text-gray-700 hover:text-blue-500" asp-controller="Libros" asp-action="Administrar">Administrar Libros</a></li>
+                    </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-grow">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            @RenderBody()
+        </div>
+    </main>
+    
+    
+
+</div>
+
+@await RenderSectionAsync("Scripts", required: false)
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+<script src="js/site.js"></script>
+</body>
+
+</html>

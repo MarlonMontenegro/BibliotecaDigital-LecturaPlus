@@ -1,0 +1,220 @@
+﻿@model List<LecturaPlusWeb.Models.Libros>
+
+<h2 class="text-2xl font-bold mb-4 text-gray-800 text-center">Libros Registrados</h2>
+
+<div class="mb-4 text-right">
+    <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+            class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded"
+            type="button">
+        Crear Nuevo Libro
+    </button>
+</div>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <tr>
+            <th class="px-6 py-3">Título</th>
+            <th class="px-6 py-3"></th>
+            <th class="px-6 py-3"></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var libro in Model)
+        {
+            <tr class="bg-white border-b hover:bg-gray-50">
+                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                    @libro.Titulo
+                </td>
+                <td class="px-6 py-4 text-center">
+                    <button type="button"
+                            class="bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded text-sm"
+                            onclick="cargarDatosParaEditar(@libro.IdLibro)">
+                        Editar
+                    </button>
+                </td>
+                <td class="px-6 py-4 text-center">
+                    <button type="button"
+                            class="bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded text-sm"
+                            onclick="mostrarModal('@libro.IdLibro', '@libro.Titulo')">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<!-- MODAL CREAR-->
+<div id="crud-modal" tabindex="-1" aria-hidden="true"
+     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <div class="relative bg-white rounded-lg shadow">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                <h3 class="text-lg font-semibold text-gray-900">Crear Nuevo Libro</h3>
+                <button type="button" class="text-gray-400 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center" data-modal-toggle="crud-modal">
+                    <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                    <span class="sr-only">Cerrar</span>
+                </button>
+            </div>
+
+            <!-- Modal body -->
+            <form asp-action="Create" method="post" class="p-4 md:p-5">
+                <div class="mb-4">
+                    <label for="Titulo" class="block mb-2 text-sm font-medium text-gray-900">Título</label>
+                    <input type="text" name="Titulo" id="Titulo" class="w-full p-2.5 border rounded-lg border-gray-300 text-sm" required />
+                </div>
+                <div class="mb-4">
+                    <label for="Autor" class="block mb-2 text-sm font-medium text-gray-900">Autor</label>
+                    <input type="text" name="Autor" id="Autor" class="w-full p-2.5 border rounded-lg border-gray-300 text-sm" required />
+                </div>
+                <div class="mb-4">
+                    <label for="Genero" class="block mb-2 text-sm font-medium text-gray-900">Género</label>
+                    <input type="text" name="Genero" id="Genero" class="w-full p-2.5 border rounded-lg border-gray-300 text-sm" required />
+                </div>
+                <div class="mb-4">
+                    <label for="Sinopsis" class="block mb-2 text-sm font-medium text-gray-900">Sinopsis</label>
+                    <textarea name="Sinopsis" id="Sinopsis" rows="4" class="w-full p-2.5 border rounded-lg border-gray-300 text-sm" required></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="PortadaUrl" class="block mb-2 text-sm font-medium text-gray-900">URL de Portada (Imagen)</label>
+                    <input type="url" name="PortadaUrl" id="PortadaUrl" placeholder="https://..." class="w-full p-2.5 border rounded-lg border-gray-300 text-sm" required />
+                </div>
+
+                <button type="submit"
+                        class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                    Guardar libro
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL ELIMINAR-->
+
+<div id="popup-modal" tabindex="-1"
+     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-md max-h-full">
+        <div class="relative bg-white rounded-lg shadow-sm">
+            <button type="button" class="absolute top-3 end-2.5 text-gray-400 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center" data-modal-hide="popup-modal">
+                ✖️
+            </button>
+            <div class="p-4 md:p-5 text-center">
+                <svg class="mx-auto mb-4 text-gray-400 w-12 h-12" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+                <h3 class="mb-5 text-lg font-normal text-gray-700" id="mensaje-modal">
+                    ¿Estás segura de que deseas eliminar este libro?
+                </h3>
+                <a id="confirmar-eliminar"
+                   class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
+                   data-modal-hide="popup-modal">
+                    Sí, eliminar
+                </a>
+                <button data-modal-hide="popup-modal" type="button"
+                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main modal -->
+<div id="updateProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+    <div class="relative p-4 bg-white rounded-lg shadow sm:p-5">
+        <!-- Modal content -->
+        <div class="relative p-4 bg-white rounded-lg shadow sm:p-5">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 ">
+                <h3 class="text-lg font-semibold text-gray-900 ">
+                    Update Product
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="updateProductModal">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form method="post" asp-action="Edit">
+                <input type="hidden" name="IdLibro" id="editIdLibro" />
+    
+                <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                    <div>
+                        <label for="editTitulo" class="block mb-2 text-sm font-medium text-gray-900">Título</label>
+                        <input type="text" name="Titulo" id="editTitulo" required
+                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" />
+                    </div>
+                    <div>
+                        <label for="editAutor" class="block mb-2 text-sm font-medium text-gray-900">Autor</label>
+                        <input type="text" name="Autor" id="editAutor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" />
+                    </div>
+                    <div>
+                        <label for="editGenero" class="block mb-2 text-sm font-medium text-gray-900">Género</label>
+                        <input type="text" name="Genero" id="editGenero" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" />
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="editSinopsis" class="block mb-2 text-sm font-medium text-gray-900">Sinopsis</label>
+                        <textarea name="Sinopsis" id="editSinopsis" rows="4" class="block w-full border border-gray-300 rounded-lg p-2.5 text-sm"></textarea>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="editPortadaUrl" class="block mb-2 text-sm font-medium text-gray-900">URL de Portada</label>
+                        <input type="url" name="PortadaUrl" id="editPortadaUrl" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" />
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <button type="submit"
+                            class="text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5">
+                        Actualizar libro
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function mostrarModal(id, titulo) {
+        const mensaje = `¿Estás segura de que deseas eliminar el libro "${titulo}"?`;
+        document.getElementById('mensaje-modal').textContent = mensaje;
+        document.getElementById('confirmar-eliminar').href = `/Libros/Delete/${id}`;
+
+        const modal = document.getElementById('popup-modal');
+        modal.classList.remove('hidden');
+        modal.classList.remove('opacity-0');
+        modal.classList.add('flex');
+    }
+
+    // Escucha clicks en botones con data-modal-hide
+    document.querySelectorAll('[data-modal-hide="popup-modal"]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modal = document.getElementById('popup-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        });
+    });
+
+    async function cargarDatosParaEditar(id) {
+        const response = await fetch(`/Libros/GetLibro/${id}`);
+        const libro = await response.json();
+
+        document.getElementById('editIdLibro').value = libro.idLibro;
+        document.getElementById('editTitulo').value = libro.titulo;
+        document.getElementById('editAutor').value = libro.autor;
+        document.getElementById('editGenero').value = libro.genero;
+        document.getElementById('editSinopsis').value = libro.sinopsis;
+        document.getElementById('editPortadaUrl').value = libro.portadaUrl;
+
+        // Mostrar el modal
+        const modal = document.getElementById('updateProductModal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+</script>

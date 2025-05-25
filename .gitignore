@@ -1,0 +1,121 @@
+﻿# ======================
+# ⚙️ Sistema operativo
+# ======================
+.DS_Store
+Thumbs.db
+
+# ======================
+# 🧪 Archivos temporales
+# ======================
+*.log
+*.tmp
+*.swp
+*.bak
+# ======================
+# ⚙️ Sistema operativo
+# ======================
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+Thumbs.db
+ehthumbs.db
+
+# ======================
+# 🧪 Archivos temporales y logs
+# ======================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tmp
+*.swp
+*.bak
+*.pid
+
+# ======================
+# 🛠️ Archivos de editor/IDE
+# ======================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ======================
+# 📦 Dependencias
+# ======================
+node_modules/
+vendor/
+
+# ======================
+# 🔐 Archivos de entorno
+# ======================
+.env
+.env.local
+.env.*
+!.env.example
+
+# ======================
+# 🏗️ Carpeta de compilación o salida
+# ======================
+dist/
+build/
+out/
+coverage/
+
+# ======================
+# 🧾 Archivos de control de Git (no necesarios ignorarlos explícitamente)
+# ======================
+# .git/
+# .gitignore
+
+# ======================
+# 📦 Archivos comprimidos
+# ======================
+*.zip
+*.rar
+*.tar.gz
+*.tar
+*.7z
+
+# ======================
+# 🔧 Archivos de sistema o generados
+# ======================
+*.exe
+*.dll
+*.so
+*.class
+*.pyc
+__pycache__/
+.eslintcache
+
+# ======================
+# 💾 Archivos de base de datos (exceptuando los .sql)
+# ======================
+*.sqlite
+*.sqlite3
+*.db
+*.db3
+!*.sql
+
+# ======================
+# 🐘 Laravel / PHP específicos
+# ======================
+/public/storage
+/storage/*.key
+.phpunit.result.cache
+Homestead.yaml
+Homestead.json
+
+# ======================
+# 🔒 Lockfiles (usa los que correspondan a tu gestor)
+# ======================
+yarn.lock
+pnpm-lock.yaml
+
+# ======================
+# 🧪 Testing
+# ======================
+jest-test-results.json
+
