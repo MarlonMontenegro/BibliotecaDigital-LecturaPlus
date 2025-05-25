@@ -16,8 +16,6 @@ Este es el segundo desafío práctico del curso, cuyo objetivo es implementar un
 ### Página de Administración
 ![Administrar Libros](screenshots/administrar-libros.png)
 
-> Las capturas deben guardarse en una carpeta `screenshots/` dentro del proyecto.
-
 ---
 
 ## 📝 Descripción del Proyecto
@@ -55,23 +53,6 @@ Este es el segundo desafío práctico del curso, cuyo objetivo es implementar un
 - **Flowbite (UI Kit basado en Tailwind)**
 - **JavaScript (eventos de calificación)**
 
----
-
-## 📂 Estructura del Proyecto
-
-```
-LecturaPlusWeb/
-├── Controllers/
-├── Models/
-├── Views/
-├── wwwroot/
-├── data/
-├── appsettings.json
-├── Program.cs
-├── tailwind.config.js
-├── postcss.config.js
-└── README.md
-```
 
 ---
 
@@ -124,8 +105,6 @@ Luego, en `wwwroot/css/site.css`, agrega:
 
 @import "flowbite";
 ```
-
-> Asegúrate de que `output.css` esté enlazado correctamente en tu archivo `_Layout.cshtml`.
 
 ### 4. Compilar estilos con Tailwind
 
